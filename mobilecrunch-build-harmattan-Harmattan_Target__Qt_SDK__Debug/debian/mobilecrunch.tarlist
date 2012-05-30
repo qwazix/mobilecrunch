@@ -1,0 +1,27 @@
+# This file is created by MADDE 'dh_fixperms'.
+# MADDE 'dpkg-deb' uses this file when creating
+# 'data.tar.gz' for debian package ar archive.
+755 root root . ./opt /
+755 root root . ./opt/mobilecrunch /
+755 root root . ./opt/mobilecrunch/bin /
+755 root root . ./opt/mobilecrunch/bin/mobilecrunch debian/mobilecrunch/opt/mobilecrunch/bin/mobilecrunch
+644 root root . ./opt/mobilecrunch/mobileCrunchVkb_1.xml debian/mobilecrunch/opt/mobilecrunch/mobileCrunchVkb_1.xml
+755 root root . ./opt/mobilecrunch/qml /
+755 root root . ./opt/mobilecrunch/qml/mobilecrunch /
+644 root root . ./opt/mobilecrunch/qml/mobilecrunch/MainPage.qml debian/mobilecrunch/opt/mobilecrunch/qml/mobilecrunch/MainPage.qml
+644 root root . ./opt/mobilecrunch/qml/mobilecrunch/Pager.qml debian/mobilecrunch/opt/mobilecrunch/qml/mobilecrunch/Pager.qml
+644 root root . ./opt/mobilecrunch/qml/mobilecrunch/clear.svg debian/mobilecrunch/opt/mobilecrunch/qml/mobilecrunch/clear.svg
+644 root root . ./opt/mobilecrunch/qml/mobilecrunch/main.qml debian/mobilecrunch/opt/mobilecrunch/qml/mobilecrunch/main.qml
+755 root root . ./usr /
+755 root root . ./usr/share /
+755 root root . ./usr/share/applications /
+644 root root . ./usr/share/applications/mobilecrunch_harmattan.desktop debian/mobilecrunch/usr/share/applications/mobilecrunch_harmattan.desktop
+755 root root . ./usr/share/doc /
+755 root root . ./usr/share/doc/mobilecrunch /
+644 root root . ./usr/share/doc/mobilecrunch/changelog.gz debian/mobilecrunch/usr/share/doc/mobilecrunch/changelog.gz
+644 root root . ./usr/share/doc/mobilecrunch/copyright debian/mobilecrunch/usr/share/doc/mobilecrunch/copyright
+755 root root . ./usr/share/icons /
+755 root root . ./usr/share/icons/hicolor /
+755 root root . ./usr/share/icons/hicolor/80x80 /
+755 root root . ./usr/share/icons/hicolor/80x80/apps /
+644 root root . ./usr/share/icons/hicolor/80x80/apps/mobilecrunch80.png debian/mobilecrunch/usr/share/icons/hicolor/80x80/apps/mobilecrunch80.png

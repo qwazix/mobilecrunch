@@ -1,0 +1,23 @@
+Format: 1.8
+Date: Sun, 27 May 2012 13:25:46 +0300
+Source: mobilecrunch
+Binary: mobilecrunch
+Architecture: armel
+Version: 0.0.3
+Distribution: unstable
+Urgency: low
+Maintainer: unknown <>
+Changed-By: unknown <>
+Description: 
+ mobilecrunch - mobilecrunch is a powerful touch friendly calculator
+Changes: 
+ mobilecrunch (0.0.3) unstable; urgency=low
+ .
+   * <Add change description here>
+Checksums-Sha1: 
+ bf484baed2fb1c17602409103c4d88e94a0841e5 182992 mobilecrunch_0.0.3_armel.deb
+Checksums-Sha256: 
+ 9e908e913f0d285753920ed4a59302e99bfdb0fd255a3949beb045f4fb979232 182992 mobilecrunch_0.0.3_armel.deb
+Files: 
+ 8ddc9a70764ee26e586f1b2f948a64d6 182992 user/other optional mobilecrunch_0.0.3_armel.deb
+Maemo-Display-Name: mobilecrunch

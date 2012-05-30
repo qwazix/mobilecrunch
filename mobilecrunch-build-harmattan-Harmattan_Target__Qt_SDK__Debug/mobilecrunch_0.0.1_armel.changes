@@ -1,0 +1,23 @@
+Format: 1.8
+Date: Mon, 21 Nov 2011 20:43:29 +0200
+Source: mobilecrunch
+Binary: mobilecrunch
+Architecture: armel
+Version: 0.0.1
+Distribution: unstable
+Urgency: low
+Maintainer: unknown <>
+Changed-By: unknown <>
+Description: 
+ mobilecrunch - <insert up to 60 chars description>
+Changes: 
+ mobilecrunch (0.0.1) unstable; urgency=low
+ .
+   * Initial Release.
+Checksums-Sha1: 
+ fbc83fef0db3bd76e3b543a3a28f5825b86ad23c 161032 mobilecrunch_0.0.1_armel.deb
+Checksums-Sha256: 
+ 9c9e16b6c68d3133b9e972049043f1708d6646b8719b9c42121a0e4959709a07 161032 mobilecrunch_0.0.1_armel.deb
+Files: 
+ 1a4ebf8f6b23e89bfab88e619211c30b 161032 user/other optional mobilecrunch_0.0.1_armel.deb
+Maemo-Display-Name: mobilecrunch

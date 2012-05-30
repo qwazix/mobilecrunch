@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="78"
+   height="78"
+   id="svg3073">
+  <defs
+     id="defs3075">
+    <linearGradient
+       id="linearGradient10194">
+      <stop
+         id="stop10196"
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop10198"
+         style="stop-color:#707070;stop-opacity:1"
+         offset="1" />
+    </linearGradient>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="hicg_drop_shadow">
+      <feOffset
+         id="feOffset3222"
+         dy="4"
+         dx="0"
+         in="SourceAlpha" />
+      <feGaussianBlur
+         id="feGaussianBlur3224"
+         stdDeviation="4" />
+      <feColorMatrix
+         id="feColorMatrix3226"
+         result="shadow"
+         values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.5 0"
+         type="matrix" />
+      <feBlend
+         in2="shadow"
+         mode="normal"
+         in="SourceGraphic"
+         id="feBlend3228" />
+    </filter>
+    <linearGradient
+       x1="39.9995"
+       y1="5.1816001"
+       x2="39.9995"
+       y2="58.801899"
+       id="hicg_overlay_grad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="stop3217"
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop3219"
+         style="stop-color:#000000;stop-opacity:1"
+         offset="1" />
+    </linearGradient>
+    <filter
+       x="-0.25"
+       y="-0.25"
+       width="1.5"
+       height="1.5"
+       color-interpolation-filters="sRGB"
+       id="filter3416">
+      <feGaussianBlur
+         id="feGaussianBlur3418"
+         in="SourceAlpha"
+         stdDeviation="7"
+         result="blur" />
+      <feColorMatrix
+         id="feColorMatrix3420"
+         result="bluralpha"
+         type="matrix"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.5 0 " />
+      <feOffset
+         id="feOffset3422"
+         in="bluralpha"
+         dx="4"
+         dy="4"
+         result="offsetBlur" />
+      <feMerge
+         id="feMerge3424">
+        <feMergeNode
+           id="feMergeNode3426"
+           in="offsetBlur" />
+        <feMergeNode
+           id="feMergeNode3428"
+           in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <linearGradient
+       x1="270.08011"
+       y1="-620.16888"
+       x2="341.3418"
+       y2="-620.16888"
+       id="linearGradient3056"
+       xlink:href="#SVGID_4_"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,-1,-235.1638,-561.4733)" />
+    <linearGradient
+       x1="296.7822"
+       y1="-628.84961"
+       x2="296.7822"
+       y2="-628.84961"
+       id="linearGradient3058"
+       xlink:href="#SVGID_5_"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,-1,-235.1638,-561.4733)" />
+    <linearGradient
+       x1="305.43951"
+       y1="-632.83301"
+       x2="305.43951"
+       y2="-581.22461"
+       id="linearGradient3060"
+       xlink:href="#SVGID_6_"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,-1,-235.1638,-561.4733)" />
+    <linearGradient
+       x1="306.03131"
+       y1="-653.63129"
+       x2="306.03131"
+       y2="-623.70898"
+       id="linearGradient3062"
+       xlink:href="#SVGID_7_"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,-1,-235.1638,-561.4733)" />
+    <linearGradient
+       x1="294.48239"
+       y1="-629.50983"
+       x2="315.00491"
+       y2="-629.50983"
+       id="linearGradient3064"
+       xlink:href="#SVGID_8_"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,-1,-235.1638,-561.4733)" />
+    <linearGradient
+       x1="305.4375"
+       y1="-630.5625"
+       x2="305.4375"
+       y2="-582.07233"
+       id="linearGradient3066"
+       xlink:href="#SVGID_9_"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,-1,-235.1638,-561.4733)" />
+    <linearGradient
+       x1="301.58109"
+       y1="-601.67578"
+       x2="301.58109"
+       y2="-582.0752"
+       id="linearGradient3068"
+       xlink:href="#SVGID_10_"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,-1,-235.1638,-561.4733)" />
+    <linearGradient
+       x1="39.9995"
+       y1="5.1816001"
+       x2="39.9995"
+       y2="58.801899"
+       id="linearGradient3072"
+       xlink:href="#hicg_overlay_grad"
+       gradientUnits="userSpaceOnUse" />
+    <clipPath
+       id="clipPath">
+      <path
+         d="M -11.964286,36.214286 C 3.3113053,21.183101 30.711738,18.788903 50.892857,17.107143 70.933688,15.437074 90.57554,11.72053 110.71429,10.5 127.69235,9.4710266 146.45401,8.943903 162.67857,3.5357143"
+         transform="translate(366.71431,279.07647)"
+         id="path5516"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </clipPath>
+    <filter
+       x="-0.5"
+       y="-0.5"
+       width="10"
+       height="10"
+       color-interpolation-filters="sRGB"
+       id="filter">
+      <feGaussianBlur
+         stdDeviation="8.60000038147"
+         id="feGaussianBlur8272" />
+    </filter>
+    <linearGradient
+       x1="487.96432"
+       y1="308.14789"
+       x2="487.96432"
+       y2="352.43506"
+       id="linearGradient10200"
+       xlink:href="#linearGradient10194"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.93212669,0,0,1.2420383,-48.417343,-83.628621)" />
+    <filter
+       x="-0.25"
+       y="-5"
+       width="1.5"
+       height="10"
+       color-interpolation-filters="sRGB"
+       id="filter10328">
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="1.6000000000000001"
+         in="SourceAlpha"
+         id="feGaussianBlur10330" />
+      <feColorMatrix
+         stdDeviation="2"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 "
+         type="matrix"
+         result="bluralpha"
+         id="feColorMatrix10332" />
+      <feOffset
+         result="offsetBlur"
+         dy="-1.3999999999999999"
+         dx="0"
+         in="bluralpha"
+         id="feOffset10334" />
+      <feMerge
+         id="feMerge10336">
+        <feMergeNode
+           in="offsetBlur"
+           id="feMergeNode10338" />
+        <feMergeNode
+           in="SourceGraphic"
+           id="feMergeNode10340" />
+      </feMerge>
+    </filter>
+  </defs>
+  <metadata
+     id="metadata3078">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-366.71431,-279.07647)"
+     id="layer1">
+    <g
+       transform="translate(365.73894,278.25504)"
+       id="g3064">
+      <path
+         d="M 79,40 C 79,68.893 68.895,79 40,79 11.105,79 1,68.893 1,40 1,11.106 11.105,1 40,1 68.895,1 79,11.106 79,40 z"
+         id="path3066"
+         style="fill:#fcbd0b;fill-opacity:1" />
+      <path
+         d="M 39.999,1 C 11.105,1 1,11.106 1,40 1,68.893 11.105,79 39.999,79 68.896,79 79,68.893 79,40 79,11.106 68.896,1 39.999,1 z m 0,77.025 C 11.57,78.025 1.976,68.43 1.976,40 c 0,-28.429 9.595,-38.024 38.023,-38.024 28.43,0 38.024,9.596 38.024,38.024 0,28.43 -9.594,38.025 -38.024,38.025 z"
+         id="path3068"
+         style="opacity:0.25;fill:#ffffff" />
+      <path
+         d="M 78.977,40 C 78.977,68.893 68.877,79 40,79 11.123,79 1.023,68.893 1.023,40 1.023,11.106 11.123,1 40,1 68.877,1 78.977,11.106 78.977,40 z"
+         id="path3070"
+         style="opacity:0.4;fill:url(#linearGradient3072)" />
+    </g>
+    <path
+       d="m 427.66638,335.25504 c -0.94275,-13.61156 5.45831,-25.28006 8.32256,-34.82142 -19.61905,0 -39.23808,0 -58.85713,0 2.86425,9.54136 9.26531,21.20986 8.32256,34.82142"
+       id="path10182"
+       style="fill:url(#linearGradient10200);fill-opacity:1;stroke:none" />
+    <rect
+       width="59.285706"
+       height="2.1428549"
+       x="376.73895"
+       y="335.07648"
+       id="rect10342"
+       style="opacity:0.978;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9000001;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter10328);enable-background:accumulate" />
+    <text
+       x="408.13739"
+       y="331.22119"
+       id="text11112"
+       xml:space="preserve"
+       style="font-size:3px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"><tspan
+         x="408.13739"
+         y="331.22119"
+         id="tspan11114"
+         style="font-size:5px;fill:#000000">+30000</tspan></text>
+    <text
+       x="404.8544"
+       y="325.41281"
+       id="text11137"
+       xml:space="preserve"
+       style="font-size:3px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"><tspan
+         x="404.8544"
+         y="325.41281"
+         id="tspan11139"
+         style="font-size:5.5px;fill:#000000">*131547</tspan></text>
+    <text
+       x="402.32901"
+       y="319.09937"
+       id="text11141"
+       xml:space="preserve"
+       style="font-size:3px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"><tspan
+         x="402.32901"
+         y="319.09937"
+         id="tspan11143"
+         style="font-size:6px;fill:#000000">/5823093</tspan></text>
+    <text
+       x="388.69196"
+       y="312.28085"
+       id="text11145"
+       xml:space="preserve"
+       style="font-size:3px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"><tspan
+         x="388.69196"
+         y="312.28085"
+         id="tspan11147"
+         style="font-size:7px;fill:#000000">-4289453092</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE keyboard SYSTEM 'VirtualKeyboardLayout.dtd'>
+<keyboard title="mobileCrunch math 2" version="1.0" catalog="math1" language="math">
+  <layout type="general">
+    <section id="main">
+      <row>
+        <key>
+          <binding label="sin("/>
+        </key>
+        <key>
+          <binding label="cos("/>
+        </key>
+        <key>
+          <binding label="tan("/>
+        </key>
+        <key>
+          <binding label="pi"/>
+        </key>
+        <key style="special">
+            <binding action="backspace"/>
+        </key>
+      </row>
+      <row>
+        <key>
+          <binding label="asin("/>
+        </key>
+        <key>
+          <binding label="acos("/>
+        </key>
+        <key>
+          <binding label="atan("/>
+        </key>
+        <key>
+          <binding label="sqrt("/>
+        </key>
+        <key>
+            <binding label="^-3"/>
+        </key>
+      </row>
+      <row>
+        <key>
+          <binding label="sqrt("/>
+        </key>
+        <key>
+          <binding label="!"/>
+        </key>
+        <key>
+          <binding label="e"/>
+        </key>
+        <key>
+          <binding action="up"/>
+        </key>
+        <key>
+            <binding label=")"/>
+        </key>
+      </row>
+      <row>
+        <key>
+          <binding label="^"/>
+        </key>
+        <key>
+          <binding label="x="/>
+        </key>
+        <key>
+          <binding action="left"/>
+        </key>
+        <key>
+          <binding action="down"/>
+        </key>
+        <key>
+            <binding action="right"/>
+        </key>
+      </row>
+    </section>
+  </layout>
+</keyboard>
