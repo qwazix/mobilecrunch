@@ -1,39 +1,19 @@
 import QtQuick 1.1
-import com.nokia.meego 1.0
 import QtQuick 1.0
 
 
-PageStackWindow {
+Rectangle {
     id: appWindow
-
-    initialPage: mainPage
-
-//    Flickable{
-//        anchors.fill: parent;
-
-//    }
+    color: "white"
+//    width: screen.displayWidth
+//    height: screen.displayHeight
+    width: 768
+    height: 1280
 
     MainPage {
         id: mainPage
     }
 
-//    ToolBarLayout {
-//        id: commonTools
-//        visible: true
-//        ToolIcon {
-//            platformIconId: "toolbar-view-menu"
-//            anchors.right: (parent === undefined) ? undefined : parent.right
-//            onClicked: (myMenu.status == DialogStatus.Closed) ? myMenu.open() : myMenu.close()
-//        }
-//    }
-
-//    Menu {
-//        id: myMenu
-//        visualParent: pageStack
-//        MenuLayout {
-//            MenuItem { text: qsTr("Sample menu item") }
-//        }
-//    }
     Text{
         visible: false;
         text: Qt.application.active
@@ -44,5 +24,5 @@ PageStackWindow {
                 mn.restoreLayouts()
         }
     }
-    Component.onCompleted: if (theme) theme.colorScheme = 19
+
 }

@@ -3,6 +3,8 @@
 #include "qmlapplicationviewer.h"
 #include "core/evaluator.h"
 #include "manager.h"
+#include <bb/device/DisplayInfo>
+using namespace bb::device;
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
@@ -13,9 +15,23 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QDeclarativeContext *ctxt = viewer->rootContext();
     ctxt->setContextProperty("mn",&mn );
 
+    //set device display properties
+    QDeclarativePropertyMap* displayProperties = new QDeclarativePropertyMap;
+    DisplayInfo display;
+    int width = display.pixelSize().width();
+    int height = display.pixelSize().height();
+    displayProperties->insert("displayWidth", QVariant(width));
+    displayProperties->insert("displayHeight", QVariant(height));
+    // hardcoded for now
+    displayProperties->insert("rotation", QVariant(0));
+
+    ctxt->setContextProperty("screen", displayProperties);
+
     viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
     viewer->setMainQmlFile(QLatin1String("qml/mobilecrunch/main.qml"));
     viewer->showExpanded();
+
+
 
     return app->exec();
     //mn.restoreLayouts();

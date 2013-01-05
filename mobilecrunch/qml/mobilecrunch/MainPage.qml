@@ -1,13 +1,12 @@
 import QtQuick 1.1
-import com.nokia.meego 1.0
 import QtQuick 1.0
-import QtWebKit 1.0
 
-Page {
-    //tools: commonTools
-    orientationLock: PageOrientation.LockPortrait
+Image {
+    source: "background.png"
+    fillMode: Image.Tile
+    anchors.fill: parent;
     Rectangle{
-        color: "#fcbd0b"
+        color: Qt.rgba(0,0,0,0.3);
         width: parent.width
         height: 70
         Row{
@@ -16,10 +15,9 @@ Page {
             height: 30
             z: 10
             spacing: 20
-            anchors.top: parent.top;
-            anchors.left: parent.left;
-            anchors.leftMargin: 200
-            anchors.topMargin: 20
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: parent.right;
+            anchors.rightMargin: 30
             Rectangle{
                 width: 20
                 height: 20
@@ -56,7 +54,7 @@ Page {
         enableKeys: true
         focus: true
         startIndex: 1
-        anchors {fill:parent}
+        anchors.fill: parent
         Timer {
             id: pagertimer
             interval: 100; running: false; repeat: false
@@ -81,115 +79,77 @@ Page {
         id: pagesModel
 ///////////////////////////////page 1
         Rectangle {
-            width: 480
-            height: 800
+            width: appWindow.width
+            height: appWindow.height
             color: "transparent"
             Column {
+                id: pageOneTopColumn
                 spacing: 10
-                anchors.fill: parent
+                anchors.top: parent.top
+                width: parent.width
                 Rectangle{
                     height: 72
                     width: parent.width
                     color: "transparent"
-                    Text {
-                        anchors.fill: parent
-                        anchors.leftMargin: 20
-                        anchors.topMargin: 17
-                        text: "functions"
-                        font.pixelSize: 30
-                    }
-                    Text {
-                        anchors.right: parent.right
-                        anchors.top: parent.top
-                        anchors.rightMargin: 20
-                        anchors.topMargin: 17
-                        text: "constants"
-                        font.pixelSize: 30
+                    TitleText {
+                        text: "functions + constants"
                     }
                 }
                 TextField{
                     id: searchFunctions
-                    placeholderText: "search"
                     inputMethodHints: Qt.ImhNoPredictiveText;
                     width: parent.width - 40
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
-                ListView{
-                    id: funcsnconsts
-                    clip: true
+            }
+            ListView{
+                id: funcsnconsts
+                clip: true
+                width: parent.width
+                anchors.top: pageOneTopColumn.bottom
+                anchors.bottom: insertButton.top
+                anchors.bottomMargin: 20
+                model: {eval(mn.getFunctions(searchFunctions.text))}
+                delegate: Rectangle{
+                    property variant functionData: modelData
+                    color: ListView.isCurrentItem ? Qt.rgba(0,0,0,0.3) : "transparent"
+                    height: 50
                     width: parent.width
-
-                    height: 300
-                    model: {eval(mn.getFunctions(searchFunctions.text))}
-                    delegate: Rectangle{
-                        color: ListView.isCurrentItem ? "#fcbd0b" : "transparent"
-                        height: 50
-                        width: parent.width
-                        Text{
-                            id:textitem
-                            text:modelData.name
-                            width: parent.width -40
-                            font.pixelSize: 30
-                            anchors.centerIn: parent
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    webBusy.visible = true;
-                                    funcsnconsts.currentIndex = index;
-                                }
-                                onDoubleClicked: {
-                                    var parenthesis = modelData.func?"()":""
-                                    tf.text = tf.text + modelData.val + parenthesis
-                                    if (modelData.func) tf.cursorPosition = tf.text.length -1
-                                    myPager.goToPage(1)
-                                }
+                    Text{
+                        id:textitem
+                        text:modelData.name
+                        color: "white"
+                        width: parent.width -40
+                        font.pixelSize: 40
+                        anchors.centerIn: parent
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+//                                    webBusy.visible = true;
+                                funcsnconsts.currentIndex = index;
                             }
+                            onDoubleClicked: insertFn(modelData)
                         }
                     }
                 }
-                Flickable{
-                    flickableDirection: "VerticalFlick"
-                    clip: true
-                    id: webFlick
-                    height: 400
-                    contentHeight: refWeb.contentsSize.height
-                    width: parent.width
-                    BusyIndicator{
-                        id: webBusy
-                        platformStyle: BusyIndicatorStyle { size: "large" }
-                        visible: false
-                        running: true
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.top: parent.top
-                        anchors.topMargin: 90
-                        z: 10
-                    }
-                    WebView {
-                        id: refWeb
-                        contentsScale: 1.6
-                        preferredWidth: 480/contentsScale
-                        preferredHeight: 400
-                        height: 6000
-                        anchors.horizontalCenter: parent.horizontalCenter;
-                        anchors.top: parent.top;
-                        anchors.topMargin: -70
-                        width: 480
-                        url: "http://en.m.wikipedia.org/w/index.php?title=Special%3ASearch&search=" + funcsnconsts.currentItem.children[0].text.replace(" ","+","g")
-                        //onUrlChanged: heuristicZoom(10,10,2);//evaluateJavaScript("document.getElementsByTagName('html')[0].scrollTop = 30")
-                        onProgressChanged: if (progress==1) webBusy.visible = false//function() {return refWeb.progress!=1}
-                    }
-
-                }
-                ScrollDecorator{
-                    flickableItem: webFlick
-                    height: 0
-                }
             }
+
+            Button{
+                id: insertButton
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 10
+                width: parent.width - 50
+                anchors.horizontalCenter: parent.horizontalCenter
+                onClicked: insertFn(funcsnconsts.currentItem.functionData)
+                text: "append to expression"
+            }
+
+
         }
 ///////////////////////////////page 2
         Rectangle{
-            width: 480
-            height: 800
+            width: appWindow.width
+            height: appWindow.height
             color: "transparent"
             Column{
                 anchors.fill: parent
@@ -204,14 +164,14 @@ Page {
                 }
 
                 Rectangle{
-                    height: 280
+                    height: parent.height/3
                     width: parent.width
                     color: "transparent"
                     ListView{
                         clip: true
                         id: resultsView
                         snapMode: "SnapOneItem"
-                        height: 280
+                        height: parent.height
                         width: parent.width
                         model: resultsList
                         delegate: MouseArea{
@@ -221,6 +181,7 @@ Page {
                                 id: li
                                 text:model.text
                                 font.pixelSize: 30
+                                color: "white"
                             }
                             onClicked: {
                                 if (mouse.wasHeld)
@@ -238,23 +199,27 @@ Page {
                         }
 
                     }
-                    ScrollDecorator{
-                        flickableItem: resultsView
-                    }
+//                    ScrollDecorator{
+//                        flickableItem: resultsView
+//                    }
                 }
 
 
                 Text{
                     //margintop 30
                     id: result
-                    font.pointSize: 30
-                    height: 70
+                    color: "white"
+                    font.pointSize: 12
+                    height: 100
                     width: parent.width
                 }
                 Row{
+                    width: parent.width
+                    height: childrenRect.height
+                    spacing: 10
                     TextField{
                         id: tf
-                        width: 370
+                        width: parent.width - goButton.width - parent.spacing
                         inputMethodHints: Qt.ImhNoPredictiveText;
                         placeholderText: "expression"
                         Keys.onReturnPressed: { go();}
@@ -269,14 +234,14 @@ Page {
 //                        }
 
                         Image {
-                                anchors { top: parent.top; right: parent.right; margins: 7 }
+                                anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: (parent.height - height) / 2; }
                                 id: clearText
                                 fillMode: Image.PreserveAspectFit
                                 smooth: true;
                                 visible: tf.text
                                 source: "clear.svg"
-                                height: parent.height - 14
-                                width: parent.height - 14
+                                height: parent.height * 0.7
+                                width: height
                                 MouseArea {
                                     id: clear
                                     anchors { horizontalCenter: parent.horizontalCenter; verticalCenter: parent.verticalCenter }
@@ -294,8 +259,9 @@ Page {
                         //focus: visible//myPager.index==0
                     }
                     Button {
+                        id: goButton
                         text: "Go"
-                        width: 70
+                        width: 100
                         onClicked: { go();  }
                     }
                 }
@@ -309,26 +275,26 @@ Page {
                         height: 10
                         color: "transparent"
                     }
-                    Button {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        width: 400
-                        text: "clear till"
-                        onClicked: resultsList.clear()
-                    }
-                    Button {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        width: 400
-                        text: "copy result"
-                        enabled: result.text.lengthx
-                        onClicked: mn.setClipboard(result.text)
-                    }
+//                    Button {
+//                        anchors.horizontalCenter: parent.horizontalCenter
+//                        width: 400
+//                        text: "clear till"
+//                        onClicked: resultsList.clear()
+//                    }
+//                    Button {
+//                        anchors.horizontalCenter: parent.horizontalCenter
+//                        width: 400
+//                        text: "copy result"
+//                        enabled: result.text.lengthx
+//                        onClicked: mn.setClipboard(result.text)
+//                    }
                 }
             }
         }
 
         Rectangle {
-            width: 480
-            height: 800
+            width: appWindow.width
+            height: appWindow.height
             color: "transparent"
             Column {
                 anchors.fill: parent
@@ -336,29 +302,17 @@ Page {
                     height: 90
                     width: parent.width
                     color: "transparent"
-                    Text {
-                        anchors.fill: parent
-                        anchors.leftMargin: 20
-                        anchors.topMargin: 17
-                        text: "settings"
-                        font.pixelSize: 30
-                    }
-                    Text {
-                        anchors.right: parent.right
-                        anchors.top: parent.top
-                        anchors.rightMargin: 20
-                        anchors.topMargin: 17
-                        text: "help"
-                        font.pixelSize: 30
+                    TitleText{
+                        text: "settings + tips"
                     }
                 }
                 ButtonRow{
                     anchors.horizontalCenter: parent.horizontalCenter
                     Button{
-                        platformStyle : ButtonStyle {
-                                    checkedBackground: "image://theme/" + "color19-" + "meegotouch-button"+__invertedString+"-background-selected-horizontal-left"
-                                    pressedBackground: "image://theme/" + "color19-" + "meegotouch-button"+__invertedString+"-background-pressed-horizontal-left"
-                                }
+//                        platformStyle : ButtonStyle {
+//                                    checkedBackground: "image://theme/" + "color19-" + "meegotouch-button"+__invertedString+"-background-selected-horizontal-left"
+//                                    pressedBackground: "image://theme/" + "color19-" + "meegotouch-button"+__invertedString+"-background-pressed-horizontal-left"
+//                                }
 
                         text: "degrees"
                         onClicked: {
@@ -369,10 +323,10 @@ Page {
                         checked: {return (mn.getAngleMode() == 'd')}
                     }
                     Button{
-                        platformStyle : ButtonStyle {
-                                    checkedBackground: "image://theme/" + "color19-" + "meegotouch-button"+__invertedString+"-background-selected-horizontal-right"
-                                    pressedBackground: "image://theme/" + "color19-" + "meegotouch-button"+__invertedString+"-background-pressed-horizontal-right"
-                                }
+//                        platformStyle : ButtonStyle {
+//                                    checkedBackground: "image://theme/" + "color19-" + "meegotouch-button"+__invertedString+"-background-selected-horizontal-right"
+//                                    pressedBackground: "image://theme/" + "color19-" + "meegotouch-button"+__invertedString+"-background-pressed-horizontal-right"
+//                                }
                         text: "radians"
                         onClicked: {
                             mn.setAngleModeRadian()
@@ -389,6 +343,7 @@ Page {
 
                 Text{
                     text: "Tips:"
+                    color: "white"
                     width: parent.width - 60
                     font.pixelSize: 40
                     anchors.left: parent.left;
@@ -396,6 +351,20 @@ Page {
                 }
                 Text{
                     text: "Double tap on any function in the functions page to insert it to the running expression."
+                    color: "white"
+                    width: parent.width - 90
+                    font.pixelSize: 30
+                    wrapMode: "WordWrap"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+                Rectangle{
+                    color: "transparent"
+                    height: 20
+                    width: parent.width
+                }
+                Text{
+                    text: "Swipe in from the bottom left corner of the screen to bring up the native virtual keyboard, so you can type complex expressions."
+                    color: "white"
                     width: parent.width - 90
                     font.pixelSize: 30
                     wrapMode: "WordWrap"
@@ -408,6 +377,7 @@ Page {
                 }
                 Text{
                     text: "Tap on any result on the till to insert it to the running expression."
+                    color: "white"
                     width: parent.width - 90
                     font.pixelSize: 30
                     wrapMode: "WordWrap"
@@ -429,6 +399,13 @@ Page {
             resultsList.append({"text": tf.text, "value" : tf.text, "steps": tf.text})
         tf.forceActiveFocus()
         resultsView.positionViewAtEnd()
+    }
+
+    function insertFn(data){
+        var parenthesis = data.func?"()":""
+        tf.text = tf.text + data.val + parenthesis
+        if (data.func) tf.cursorPosition = tf.text.length -1
+        myPager.goToPage(1)
     }
 
 }

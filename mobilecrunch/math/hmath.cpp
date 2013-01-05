@@ -661,7 +661,7 @@ char* _doFormat(
   if (float_out(&tokens, &tmp, prec, base, outmode) == Success)
   {
     sz = cattokens(NULL, -1, &tokens, expbase, flags);
-    str = (char*)malloc( sz );
+    str = (char*)std::malloc( sz );
     cattokens(str, sz, &tokens, expbase, flags);
   }
   float_free(&tmp);
@@ -1809,7 +1809,7 @@ std::ostream& operator<<( std::ostream& s, const HNumber& n )
 {
   char* str = HMath::format( n, 'f' );
   s << str;
-  free(str);
+  std::free(str);
   return s;
 }
 

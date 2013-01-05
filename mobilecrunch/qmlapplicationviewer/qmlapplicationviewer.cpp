@@ -65,6 +65,9 @@ QString QmlApplicationViewerPrivate::adjustPath(const QString &path)
     if (!QDir::isAbsolutePath(path))
         return QCoreApplication::applicationDirPath()
                 + QLatin1String("/../Resources/") + path;
+#elif defined(Q_OS_QNX)
+    if (!QDir::isAbsolutePath(path))
+        return QString::fromLatin1("app/native/%1").arg(path);
 #else
     QString pathInInstallDir;
     const QString applicationDirPath = QCoreApplication::applicationDirPath();
