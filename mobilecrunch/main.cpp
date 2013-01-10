@@ -11,8 +11,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QScopedPointer<QApplication> app(createApplication(argc, argv));
     QScopedPointer<QmlApplicationViewer> viewer(QmlApplicationViewer::create());
 
-    manager mn;
+    app->setStartDragDistance(27);
     QDeclarativeContext *ctxt = viewer->rootContext();
+
+    manager mn;
+
     ctxt->setContextProperty("mn",&mn );
 
     //set device display properties
@@ -27,11 +30,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     ctxt->setContextProperty("screen", displayProperties);
 
-    viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
+    viewer->setOrientation(QmlApplicationViewer::ScreenOrientationLockPortrait);
     viewer->setMainQmlFile(QLatin1String("qml/mobilecrunch/main.qml"));
     viewer->showExpanded();
-
-
 
     return app->exec();
     //mn.restoreLayouts();

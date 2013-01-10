@@ -60,10 +60,10 @@ Image {
             interval: 100; running: false; repeat: false
             onTriggered: {
                 if (parent.index==1) {
-                    if (parent.firstTime) parent.firstTime = false; else mn.setNumbers()
-                    tf.forceActiveFocus()
+                    if (parent.firstTime) parent.firstTime = false; //else mn.setNumbers()
+//                    tf.forceActiveFocus()
                 }
-                if (parent.index==0) mn.setABC()
+                //if (parent.index==0) mn.setABC()
                 for (var i=0; i<bullets.children.length; i++) bullets.children[i].color = "darkgrey"
                 bullets.children[parent.index].color = "grey"
             }
@@ -77,7 +77,7 @@ Image {
 
     VisualItemModel {
         id: pagesModel
-///////////////////////////////page 1
+///////////////////////////////////////////// Page 1
         Rectangle {
             width: appWindow.width
             height: appWindow.height
@@ -113,7 +113,7 @@ Image {
                 delegate: Rectangle{
                     property variant functionData: modelData
                     color: ListView.isCurrentItem ? Qt.rgba(0,0,0,0.3) : "transparent"
-                    height: 50
+                    height: 70
                     width: parent.width
                     Text{
                         id:textitem
@@ -125,7 +125,7 @@ Image {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
-//                                    webBusy.visible = true;
+        //                                    webBusy.visible = true;
                                 funcsnconsts.currentIndex = index;
                             }
                             onDoubleClicked: insertFn(modelData)
@@ -146,7 +146,8 @@ Image {
 
 
         }
-///////////////////////////////page 2
+
+        ///////////////////////////////////////////////// page 2
         Rectangle{
             width: appWindow.width
             height: appWindow.height
@@ -154,6 +155,7 @@ Image {
             Column{
                 anchors.fill: parent
                 anchors.margins: 20
+                spacing: 10
                 ListModel{
                     id: resultsList
                 }
@@ -164,7 +166,7 @@ Image {
                 }
 
                 Rectangle{
-                    height: parent.height/3
+                    height: parent.height/4
                     width: parent.width
                     color: "transparent"
                     ListView{
@@ -175,12 +177,12 @@ Image {
                         width: parent.width
                         model: resultsList
                         delegate: MouseArea{
-                            height: 40
+                            height: 50
                             width: parent.width
                             Text{
                                 id: li
                                 text:model.text
-                                font.pixelSize: 30
+                                font.pixelSize: 40
                                 color: "white"
                             }
                             onClicked: {
@@ -189,7 +191,7 @@ Image {
                                 else
                                     tf.text = tf.text + "(" +model.steps + ")"
                                 mouse.accepted = true;
-                                tf.forceActiveFocus()
+        //                                tf.forceActiveFocus()
                             }
             //                onClicked: {
             //                    tf.text = tf.text + model.value
@@ -199,9 +201,9 @@ Image {
                         }
 
                     }
-//                    ScrollDecorator{
-//                        flickableItem: resultsView
-//                    }
+        //                    ScrollDecorator{
+        //                        flickableItem: resultsView
+        //                    }
                 }
 
 
@@ -213,25 +215,54 @@ Image {
                     height: 100
                     width: parent.width
                 }
+
+        //        Button{
+        //            text: "kbheight";
+        //            onClicked: {
+        //                console.log(mn.getKeyboardHeight());
+        //            }
+        //        }
+                VkbState {
+                    id: vkbState;
+                }
+
                 Row{
                     width: parent.width
                     height: childrenRect.height
                     spacing: 10
                     TextField{
                         id: tf
-                        width: parent.width - goButton.width - parent.spacing
-                        inputMethodHints: Qt.ImhNoPredictiveText;
+                        property bool isFocused;
+                        width: parent.width - goButton.width - parent.spacing - (vkbState.open?(hidekb.width):0 )
+                        inputMethodHints: Qt.ImhNone;
+        //                        inputMethodHints: Qt.ImhPreferNumbers
+        //                        onActiveFocusChanged: {
+        //                            tfTimer.start();
+        //                            tf.isFocused = focus;
+        //                            hidekb.forceHidden=false;
+        //                            if (focus) width= parent.width - goButton.width - parent.spacing - (hidekb.width + parent.spacing); else width = parent.width - goButton.width - parent.spacing
+        //                        }
+
+        //                        Timer {
+        //                            id: tfTimer
+        //                            interval: 50; running: false; repeat: false
+        //                            onTriggered: {
+        //                               mn.hideKeyboard();
+        //                               running = false;
+        //                            }
+        //                        }
+
                         placeholderText: "expression"
                         Keys.onReturnPressed: { go();}
-//                        Rectangle{
-//                            anchors.left:parent.left
-//                            anchors.top:parent.top
-//                            anchors.leftMargin: tf.positionToRectangle(4).x
-//                            anchors.topMargin: tf.positionToRectangle(4).y
-//                            height: 20
-//                            width:20
-//                            color: "blue"
-//                        }
+        //                        Rectangle{
+        //                            anchors.left:parent.left
+        //                            anchors.top:parent.top
+        //                            anchors.leftMargin: tf.positionToRectangle(4).x
+        //                            anchors.topMargin: tf.positionToRectangle(4).y
+        //                            height: 20
+        //                            width:20
+        //                            color: "blue"
+        //                        }
 
                         Image {
                                 anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: (parent.height - height) / 2; }
@@ -248,7 +279,7 @@ Image {
                                     height: tf.height; width: tf.height
                                     onClicked: {
                                         tf.text = ""
-                                        tf.forceActiveFocus()
+        //                                        tf.forceActiveFocus()
                                     }
                                 }
                             }
@@ -264,132 +295,200 @@ Image {
                         width: 100
                         onClicked: { go();  }
                     }
+
+                    MouseArea{
+                        id: hidekb
+        //                property bool forceHidden;
+                        width: 100
+                        height: 61
+                        anchors.top: parent.top
+                        anchors.topMargin: tf.height - hidekb.height
+                        Image {
+                            source: "hidekb.svg"
+                        }
+                        onClicked: {
+                            mn.hideKeyboard();
+        //                    hidekb.forceHidden = true
+                        }
+                        visible: vkbState.open;
+                    }
                 }
-                Column{
+                Rectangle{
                     width: parent.width
+                    height: 20;
+                    color: "transparent"
+                }
+                Row{
+                    id: pageIndicatorBars
+                    width: childrenRect.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    height: 10
+                    z: 10
+                    spacing: 10
+                    Rectangle{
+                        width: 200
+                        height: 8
+                        color: "grey"
+                        opacity: .8
+                    }
+                    Rectangle{
+                        width: 200
+                        height: 8
+                        color: "darkgrey"
+                        opacity: .8
+                    }
+                }
+                Pager {
+                    property bool firstTime : true
+                    id: buttonsPager
+                    isHorizontal: true
+                    color: "transparent"
+                    enableKeys: false
+                    focus: false
+                    startIndex: 0
+                    spacing: 20
+                    height : parent.height /2 - 130
+                    width: parent.width
+                    model: VisualItemModel {
+                        // Page 1
+                        Grid{
+                            id: buttonsPage0
+                            columns: 5
+                            rows: 4
+                            width: parent.parent.width
+                            spacing: 15
+                            height: parent.height
+                            CalcButton {text: "7"}
+                            CalcButton {text: "8"}
+                            CalcButton {text: "9"}
+                            CalcButton {text: "+"}
+                            Backspace {}
+                            CalcButton {text: "4"}
+                            CalcButton {text: "5"}
+                            CalcButton {text: "6"}
+                            CalcButton {text: "-"}
+                            CalcButton {text: "("}
+                            CalcButton {text: "1"}
+                            CalcButton {text: "2"}
+                            CalcButton {text: "3"}
+                            CalcButton {text: "*"}
+                            CalcButton {text: ")"}
+                            CalcButton {text: "."}
+                            CalcButton {text: "0"}
+                            CalcButton {text: "000"}
+                            CalcButton {text: "/"}
+                            CalcButton {text: "^"}
+                        }
+                        //Page 2
+                        Grid{
+                            columns: 5
+                            rows: 4
+                            width: buttonsPage0.width
+                            spacing: 15
+                            height: parent.height
+                            CalcButton {text: "sin"; isFunction: true }
+                            CalcButton {text: "cos"; isFunction: true}
+                            CalcButton {text: "tan"; isFunction: true}
+                            CalcButton {text: "pi"}
+                            Backspace {}
+                            CalcButton {text: "asin"; isFunction: true}
+                            CalcButton {text: "acos"; isFunction: true}
+                            CalcButton {text: "atan"; isFunction: true}
+                            CalcButton {Image { source: "squareroot.svg"; anchors.centerIn: parent } value: "sqrt()"}
+                            CalcButton {Image { source: "cubicroot.svg"; anchors.centerIn: parent} value:"^-3"; onCallback: {tf.cursorPosition -= 3}}
+                            CalcButton {text: "("}
+                            CalcButton {text: "!"}
+                            CalcButton {text: "e"}
+                            CalcButton {text: "%"}
+                            CalcButton {text: ")"}
+                            CalcButton {text: "x="}
+                            CalcButton {text: "home"
+                                        special: true
+                                        onRunFunction: tf.cursorPosition = 0
+                                        }
+                            CalcButton {text: "←"
+                                        special: true
+                                        onRunFunction: {
+                                            tf.forceActiveFocus();
+                                            mn.hideKeyboard();
+                                            tf.cursorPosition--
+                                        }}
+                            CalcButton {text: "→";
+                                        special: true
+                                        onRunFunction: {
+                                            tf.forceActiveFocus();
+                                            mn.hideKeyboard();
+                                            tf.cursorPosition++
+                                        }}
+                            CalcButton {text: "end"
+                                        special: true
+                                        onRunFunction: {
+                                            tf.forceActiveFocus();
+                                            mn.hideKeyboard();
+                                            tf.cursorPosition = tf.text.length
+                                        }}
+                            //←↑→↓
+                        }
+
+                    }
+                    Timer {
+                        id: pagertimerBtn
+                        interval: 100; running: false; repeat: false
+                        onTriggered: {
+                            if (parent.index==1) {
+                                if (parent.firstTime) parent.firstTime = false; //else mn.setNumbers()
+        //                                tf.forceActiveFocus()
+                            }
+                            //if (parent.index==0) mn.setABC()
+                            for (var i=0; i<pageIndicatorBars.children.length; i++) pageIndicatorBars.children[i].color = "grey"
+                            pageIndicatorBars.children[parent.index].color = "#489bc0"
+                        }
+                    }
+
+                    onIndexChanged: {
+                        pagertimerBtn.running = true
+                    }
+
+                }
+                Rectangle{
+                    width: parent.width
+                    height: 3
+                    color: "transparent"
+                }
+                Row{
+                    width: childrenRect.width
                     height: childrenRect.height
+                    anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 10
                     //color: "transparent"
-                    Rectangle{
-                        width: parent.width
-                        height: 10
-                        color: "transparent"
+                    Button {
+                        text: "clear till"
+                        onClicked: resultsList.clear()
                     }
-//                    Button {
-//                        anchors.horizontalCenter: parent.horizontalCenter
-//                        width: 400
-//                        text: "clear till"
-//                        onClicked: resultsList.clear()
-//                    }
-//                    Button {
-//                        anchors.horizontalCenter: parent.horizontalCenter
-//                        width: 400
-//                        text: "copy result"
-//                        enabled: result.text.lengthx
-//                        onClicked: mn.setClipboard(result.text)
-//                    }
+                    Button {
+                        width: 100
+                        iconSource: "copy.svg"
+                        enabled: result.text.length
+                        onClicked: mn.setClipboard(result.text)
+                    }
+                    KeyboardButton {
+                        width: 100
+                        iconSource: "paste.svg"
+                        value: mn.getClipboard();
+                        onBeforeClicked: {
+                            value = mn.getClipboard();
+                        }
+                    }
                 }
             }
         }
 
-        Rectangle {
-            width: appWindow.width
-            height: appWindow.height
-            color: "transparent"
-            Column {
-                anchors.fill: parent
-                Rectangle{
-                    height: 90
-                    width: parent.width
-                    color: "transparent"
-                    TitleText{
-                        text: "settings + tips"
-                    }
-                }
-                ButtonRow{
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    Button{
-//                        platformStyle : ButtonStyle {
-//                                    checkedBackground: "image://theme/" + "color19-" + "meegotouch-button"+__invertedString+"-background-selected-horizontal-left"
-//                                    pressedBackground: "image://theme/" + "color19-" + "meegotouch-button"+__invertedString+"-background-pressed-horizontal-left"
-//                                }
 
-                        text: "degrees"
-                        onClicked: {
-                            mn.setAngleModeDegree()
-                            result.text= mn.autoCalc(tf.text)
-                            console.log(mn.getAngleMode()=='d')
-                        }
-                        checked: {return (mn.getAngleMode() == 'd')}
-                    }
-                    Button{
-//                        platformStyle : ButtonStyle {
-//                                    checkedBackground: "image://theme/" + "color19-" + "meegotouch-button"+__invertedString+"-background-selected-horizontal-right"
-//                                    pressedBackground: "image://theme/" + "color19-" + "meegotouch-button"+__invertedString+"-background-pressed-horizontal-right"
-//                                }
-                        text: "radians"
-                        onClicked: {
-                            mn.setAngleModeRadian()
-                            result.text= mn.autoCalc(tf.text)
-                        }
-                        checked: {return (mn.getAngleMode() == 'r')}
-                    }
-                }
-                Rectangle{
-                    color: "transparent"
-                    height: 40
-                    width: parent.width
-                }
-
-                Text{
-                    text: "Tips:"
-                    color: "white"
-                    width: parent.width - 60
-                    font.pixelSize: 40
-                    anchors.left: parent.left;
-                    anchors.leftMargin: 30
-                }
-                Text{
-                    text: "Double tap on any function in the functions page to insert it to the running expression."
-                    color: "white"
-                    width: parent.width - 90
-                    font.pixelSize: 30
-                    wrapMode: "WordWrap"
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-                Rectangle{
-                    color: "transparent"
-                    height: 20
-                    width: parent.width
-                }
-                Text{
-                    text: "Swipe in from the bottom left corner of the screen to bring up the native virtual keyboard, so you can type complex expressions."
-                    color: "white"
-                    width: parent.width - 90
-                    font.pixelSize: 30
-                    wrapMode: "WordWrap"
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-                Rectangle{
-                    color: "transparent"
-                    height: 20
-                    width: parent.width
-                }
-                Text{
-                    text: "Tap on any result on the till to insert it to the running expression."
-                    color: "white"
-                    width: parent.width - 90
-                    font.pixelSize: 30
-                    wrapMode: "WordWrap"
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-
-            }
-        }
+        Page3{}
     }
     Component.onCompleted: {
-        tf.forceActiveFocus();
-
+//        tf.forceActiveFocus();
+        mn.changeKeyboardType(1);
     }
 
     function go(){
@@ -397,7 +496,7 @@ Image {
             resultsList.append({"text": tf.text + " = " + mn.calc(tf.text), "value" : mn.calc(tf.text), "steps" : tf.text})
         else
             resultsList.append({"text": tf.text, "value" : tf.text, "steps": tf.text})
-        tf.forceActiveFocus()
+//        tf.forceActiveFocus()
         resultsView.positionViewAtEnd()
     }
 

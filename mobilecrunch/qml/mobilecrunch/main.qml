@@ -9,7 +9,6 @@ Rectangle {
 //    height: screen.displayHeight
     width: 768
     height: 1280
-
     MainPage {
         id: mainPage
     }
@@ -17,12 +16,13 @@ Rectangle {
     Text{
         visible: false;
         text: Qt.application.active
-        onTextChanged: {
-            if (Qt.application.active)
-                mn.loadLayouts()
-            else
-                mn.restoreLayouts()
-        }
+//        onTextChanged: {
+//            if (Qt.application.active)
+////                console.log("active")
+//            else
+////                console.log("inactive")
+
+//        }
     }
 
 }

@@ -347,6 +347,9 @@ QSettings * createQSettings( const QString & KEY )
     settings = new QSettings( QSettings::NativeFormat, QSettings::UserScope, KEY, KEY );
 #endif // Q_WS_MAC
 
+#ifdef Q_OS_BLACKBERRY
+    settings = new QSettings();
+#endif
 
 #if defined (Q_WS_X11) || defined (Q_WS_QWS)
 #ifdef SPEEDCRUNCH_PORTABLE

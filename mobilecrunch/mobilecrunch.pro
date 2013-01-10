@@ -2,7 +2,11 @@ TEMPLATE = app
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
-LIBS += -lbbdevice
+LIBS += -lbbdevice -lbb
+
+#INCLUDEPATH += /home/qwazix/qt-qt/src/plugins/platforms/blackberry
+#LIBS += -L/home/qwazix/qt4.8-playbook-linux/plugins/platforms
+#LIBS += -lblackberry
 
 # If your application uses the Qt Mobility libraries, uncomment the following
 # lines and add the respective components to the MOBILITY variable.
@@ -39,7 +43,8 @@ SOURCES += main.cpp \
     math/number.c \
     bison/bisonparser.cpp \
     bison/exprparser.c \
-    manager.cpp
+    manager.cpp \
+    vkbeventhandler.cpp
 
 # Please do not modify the following line. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -49,10 +54,11 @@ OTHER_FILES += \
     clear.svg \
     textfield.png \
     background.png \
-    button-background.png button-background-pressed.png \
+    button-background.png button-background-pressed.png button-background-disabled.png\
     button-background-horizontal-right.png button-background-horizontal-left.png \
     button-background-selected-horizontal-right.png button-background-selected-horizontal-left.png\
     button-background-pressed-horizontal-right.png button-background-pressed-horizontal-left.png\
+    squareroot.svg cubicroot.svg backspace.svg hidekb.svg copy.svg paste.svg\
     button-background-selected.png \
     qml/mobilecrunch/Pager.qml \
     qml/mobilecrunch/ShadowUp.qml \
@@ -76,7 +82,14 @@ OTHER_FILES += \
     qml/mobilecrunch/Button.qml \
     qml/mobilecrunch/LabelStyle.qml \
     qml/mobilecrunch/Label.qml \
-    qml/mobilecrunch/Style.qml
+    qml/mobilecrunch/Style.qml \
+    qml/mobilecrunch/CalcButton.qml \
+    qml/mobilecrunch/TextAreaHelper.js \
+    qml/mobilecrunch/Backspace.qml \
+    mobilecrunch114.png \
+    qml/mobilecrunch/Page3.qml \
+    qml/mobilecrunch/VkbState.qml \
+    qml/mobilecrunch/KeyboardButton.qml
 
 HEADERS += \
     core/constants.h \
@@ -107,7 +120,8 @@ HEADERS += \
     bison/bison.h \
     bison/bisonparser.h \
     bison/exprparser.h \
-    manager.h
+    manager.h \
+    vkbeventhandler.h
 
 
 

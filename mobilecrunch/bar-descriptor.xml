@@ -2,13 +2,13 @@
 <qnx xmlns="http://www.qnx.com/schemas/application/1.0">
     <id>gr.oob.mobilecrunch</id>
     <name>mobilecrunch</name>
-    <versionNumber>1.0.0</versionNumber>
+    <versionNumber>1.0.2</versionNumber>
     <description>mobilecrunch is an advanced scientific calculator</description>
     <initialWindow>
         <systemChrome>none</systemChrome>
         <transparent>false</transparent>
-        <autoOrients>true</autoOrients>
-        <aspectRatio>landscape</aspectRatio>
+        <autoOrients>false</autoOrients>
+        <aspectRatio>portrait</aspectRatio>
     </initialWindow>
     <publisher>oob</publisher>
     <copyright>oob</copyright>
@@ -20,9 +20,9 @@
     <action system="true">run_native</action>
     <!-- PROJECTPATH should point to the project binary, path can be relative -->
     <asset path="mobilecrunch" type="Qnx/Elf" entry="true">mobilecrunch</asset>
-    <asset path="/home/qwazix/Documents/projects/mobilecrunch/mobilecrunch/mobilecrunch80.png">mobilecrunch80.png</asset>
+    <asset path="/home/qwazix/Documents/projects/mobilecrunch/mobilecrunch/mobilecrunch114.png">mobilecrunch114.png</asset>
     <asset path="%SRC_DIR%/qml">qml</asset>
     <icon>
-        <image>mobilecrunch80.png</image>
+        <image>mobilecrunch114.png</image>
     </icon>
 </qnx>

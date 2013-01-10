@@ -7,6 +7,7 @@
 #include "core/settings.h"
 #include <QDebug>
 #include <QClipboard>
+#include "vkbeventhandler.h"
 
 class manager : public QObject     //IMP
 {
@@ -15,6 +16,15 @@ private:
     Evaluator * evl;
     Settings * settings;
     QClipboard *clipboard;
+    vkbEventHandler *eventListener;
+
+signals:
+    void vkbHidden();
+    void vkbVisible();
+
+private slots:
+    void vkbHiddenSlot();
+    void vkbVisibleSlot();
 
 public:
 
@@ -23,12 +33,14 @@ public:
     Q_INVOKABLE void loadLayouts();
     Q_INVOKABLE void restoreLayouts();
     Q_INVOKABLE QString getFunctions(QString);
-    Q_INVOKABLE void setABC();
-    Q_INVOKABLE void setNumbers();
     Q_INVOKABLE void setAngleModeRadian();
     Q_INVOKABLE void setAngleModeDegree();
     Q_INVOKABLE QString getAngleMode();
     Q_INVOKABLE void setClipboard(QString);
+    Q_INVOKABLE QString getClipboard();
+    Q_INVOKABLE void hideKeyboard();
+    Q_INVOKABLE void changeKeyboardType(int mode);
+    Q_INVOKABLE int getKeyboardHeight();
 
     manager();
 };

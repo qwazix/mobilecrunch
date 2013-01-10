@@ -286,7 +286,7 @@ FocusScope {
 //            }
 //        }
 
-        onTextChanged: {            
+        onTextChanged: {
             if(root.activeFocus) {
                 TextAreaHelper.repositionFlickable(contentMovingAnimation)
             }

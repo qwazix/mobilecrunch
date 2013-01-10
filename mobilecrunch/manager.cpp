@@ -4,6 +4,8 @@
 #include <QApplication>
 #include "core/functions.h"
 #include "core/constants.h"
+#include "bps/virtualkeyboard.h"
+//#include "qbbvirtualkeyboard.h"
 
 //save the active keyboard
 manager::manager()
@@ -11,6 +13,9 @@ manager::manager()
     evl = Evaluator::instance();
     settings = Settings::instance();
     clipboard = QApplication::clipboard();
+    eventListener = vkbEventHandler::getInstance();
+    QObject::connect(eventListener, SIGNAL(keyboardVisible()), this, SLOT(vkbVisibleSlot()));
+    QObject::connect(eventListener, SIGNAL(keyboardHidden()), this, SLOT(vkbHiddenSlot()));
 }
 
 QString manager::autoCalc(const QString &input){
@@ -93,30 +98,6 @@ QString manager::getFunctions(QString needle){
     // return Functions::instance()->names();
 }
 
-void manager::setABC()
-{
-#if !defined(Q_WS_SIMULATOR)
-
-    //load gconf to memory
-    QString binFilename(QString("libmeego-keyboard.so"));
-    QStringList currentLayout;
-    currentLayout.append(binFilename);
-    currentLayout.append("en_us.xml");
-#endif
-}
-
-void manager::setNumbers()
-{
-#if !defined(Q_WS_SIMULATOR)
-
-    //load gconf to memory
-    QString binFilename(QString("libmeego-keyboard.so"));
-    QStringList currentLayout;
-    currentLayout.append(binFilename);
-    currentLayout.append("mobileCrunchVkb_1.xml");
-#endif
-}
-
 void manager::setAngleModeRadian()
 {
     if ( settings->angleUnit == 'r' )
@@ -147,7 +128,32 @@ QString manager::getAngleMode()
 
 void manager::setClipboard(QString text){
         clipboard->setText(text, QClipboard::Clipboard);
-        clipboard->setText(text, QClipboard::Selection);
+//        clipboard->setText(text, QClipboard::Selection);
     }
 
+QString manager::getClipboard(){
+    return clipboard->text(QClipboard::Clipboard);
+}
 
+void manager::hideKeyboard(){
+    virtualkeyboard_hide();
+
+}
+
+void manager::changeKeyboardType(int mode){
+    if (mode==1) virtualkeyboard_change_options(VIRTUALKEYBOARD_LAYOUT_PASSWORD, VIRTUALKEYBOARD_ENTER_DEFAULT);
+}
+
+int manager::getKeyboardHeight(){
+    int a=0;
+    virtualkeyboard_get_height(&a);
+    return a;
+}
+
+void manager::vkbHiddenSlot(){
+    emit vkbHidden();
+}
+
+void manager::vkbVisibleSlot(){
+    emit vkbVisible();
+}

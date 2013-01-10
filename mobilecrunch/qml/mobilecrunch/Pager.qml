@@ -2,11 +2,12 @@ import QtQuick 1.0
 
 Rectangle {
     id:pager
-    anchors.fill: parent
+//    anchors.fill: parent
 
     property bool enableKeys: true
     property QtObject model
     property bool isHorizontal: false
+    property alias spacing: view.spacing
 
     property int index: view.currentIndex
     property int startIndex
@@ -31,6 +32,7 @@ Rectangle {
         preferredHighlightBegin: 0; preferredHighlightEnd: 0
         cacheBuffer: width;
         focus: pager.focus
+        clip: true
         onCurrentIndexChanged: pager.indexChanged()
         Keys.onLeftPressed: {
             if (enableKeys && isHorizontal && (currentIndex > 0 ))

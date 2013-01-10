@@ -41,12 +41,12 @@
 .pragma library
 
 var FONT_FAMILY = "Nokia Pure Text";
-var FONT_DEFAULT_SIZE = 32; // DEPRECATED
+var FONT_DEFAULT_SIZE = 36; // DEPRECATED
 
 var FONT_XLARGE  = 32;
 var FONT_LARGE   = 28;
 var FONT_SLARGE  = 26;
-var FONT_DEFAULT = 32;//
+var FONT_DEFAULT = 36;//
 var FONT_LSMALL  = 22; 
 var FONT_SMALL   = 20;
 var FONT_XSMALL  = 18;
